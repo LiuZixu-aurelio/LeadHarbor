@@ -1,0 +1,53 @@
+[project]
+name = "leadharbor"
+version = "0.1.0"
+description = "LeadHarbor AI lead intelligence platform: discover buyers, score opportunities, and grow outreach."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "sqlalchemy>=2.0",
+    "asyncpg>=0.29",
+    "psycopg[binary]>=3.1",
+    "alembic>=1.13",
+    "celery[redis]>=5.3",
+    "redis>=5.0",
+    "packaging>=23.0",
+    "httpx>=0.27",
+    "parsel>=1.9",
+    "rapidfuzz>=3.6",
+    "playwright>=1.42",
+    "pgvector>=0.2",
+    "openai>=3.57.0",
+    "python-multipart>=0.0.34",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [".venv", "alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "ASYNC"]
+ignore = ["B008"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
